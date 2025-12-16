@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эмоциональное выгорание - YouTalk</title>
+    <!-- Подключение шрифтов (Roboto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Твои стили -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ШАПКА (Header) -->
+    <header class="header">
+        <div class="container header__container">
+            <a href="index.html" class="header__logo" aria-label="На главную">
+                <img src="img/logo.svg" alt="YouTalk Logo">
+            </a>
+
+            <!-- Бургер-меню (чекбокс-хак) -->
+            <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
+            <label for="burger-checkbox" class="burger-btn">
+                <span></span>
+            </label>
+
+            <nav class="header__nav">
+                <ul class="header__list">
+                    <li class="header__item"><a href="index.html" class="header__link">Главная</a></li>
+                    <!-- Здесь класс active, так как мы в разделе Блог/Статьи -->
+                    <li class="header__item"><a href="index.html" class="header__link header__link--active">Блог</a></li>
+                    <li class="header__item"><a href="#" class="header__link">Услуги</a></li>
+                    <li class="header__item"><a href="#" class="header__link">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <button class="header__button button">Связаться</button>
+        </div>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ (Main) -->
+    <main class="article-page">
+        <div class="container article-layout">
+
+            <!-- Левая часть: Текст статьи -->
+            <article class="post-content">
+                <h1 class="post-content__title">Эмоциональное выгорание: как понять и что делать</h1>
+
+                <div class="post-content__meta">
+                    <span>12 Декабря</span>
+                    <!-- Точка-разделитель -->
+                    <span style="margin: 0 5px;">•</span>
+                    <span>5 мин чтения</span>
+                </div>
+
+                <img src="img/post-large.png" alt="Главное фото статьи" class="post-content__img">
+
+                <div class="post-content__text">
+                    <p class="intro-text">Эмоциональное выгорание — это состояние физического и психического истощения, возникшее в ответ на эмоциональное перенапряжение при работе с людьми.</p>
+
+                    <h2>Симптомы выгорания</h2>
+                    <p>Часто люди путают выгорание с обычной усталостью. Однако, если отдых на выходных не помогает восстановить силы, стоит задуматься.</p>
+
+                    <ul>
+                        <li>Хроническая усталость и апатия.</li>
+                        <li>Раздражительность по мелочам.</li>
+                        <li>Чувство безысходности.</li>
+                    </ul>
+
+                    <h2>Что делать?</h2>
+                    <p>Первый шаг — признать проблему. Не пытайтесь работать через силу. Обратитесь к специалисту или возьмите полноценный отпуск.</p>
+                </div>
+            </article>
+
+            <!-- Правая часть: Сайдбар (Aside) -->
+            <aside class="sidebar">
+                <!-- Блок автора -->
+                <div class="sidebar__block">
+                    <h3 class="sidebar__title">Автор</h3>
+                    <div class="author-card">
+                        <img src="img/avatar.png" alt="Иван Иванов" class="author-card__img">
+                        <div class="author-card__info">
+                            <p class="author-card__name">Иван Иванов</p>
+                            <small class="author-card__role">Психолог</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Блок популярного -->
+                <div class="sidebar__block">
+                    <h3 class="sidebar__title">Популярное</h3>
+                    <ul class="popular-list">
+                        <li class="popular-list__item">
+                            <a href="#" class="popular-list__link">Как отдыхать правильно и эффективно?</a>
+                        </li>
+                        <li class="popular-list__item">
+                            <a href="#" class="popular-list__link">Что такое soft skills?</a>
+                        </li>
+                        <li class="popular-list__item">
+                            <a href="#" class="popular-list__link">Как не сойти с ума на удаленке?</a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- ПОДВАЛ (Footer) -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__main-info">
+                <a href="index.html" class="footer__logo"><img src="img/logo.svg" alt="YouTalk"></a>
+                <div class="footer__socials">
+                    <a href="#" class="footer__social-icon"><img src="img/vk.svg" alt="VK"></a>
+                    <a href="#" class="footer__social-icon"><img src="img/telegram.svg" alt="Telegram"></a>
+                </div>
+            </div>
+
+            <nav class="footer__nav-column">
+                <h4 class="footer__title">О нас</h4>
+                <ul class="footer__list">
+                    <li><a href="#">Команда</a></li>
+                    <li><a href="#">Блог</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer__nav-column">
+                <h4 class="footer__title">Помощь</h4>
+                <ul class="footer__list">
+                    <li><a href="#">Частые вопросы</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer__subscribe">
+                <h4 class="footer__title">Подпишитесь</h4>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Ваш e-mail" class="subscribe-form__input">
+                    <button type="submit" class="subscribe-form__btn button">→</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
