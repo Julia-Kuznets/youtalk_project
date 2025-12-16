@@ -25,9 +25,9 @@ ul { list-style: none; }
 
 /* Общие классы */
 .container {
-    max-width: var(--container-width);
+    max-width: 1200px; /* Увеличили ширину, чтобы влезало больше контента */
     margin: 0 auto;
-    padding: 0 20px; /* Отступы по бокам для мобильных */
+    padding: 0 15px;
 }
 
 .button {
@@ -121,9 +121,21 @@ ul { list-style: none; }
 /* ВАЖНО: Если на скриншоте кнопка светлая с цветным текстом (альтернативный вариант) */
 /* Раскомментируй этот блок, если кнопка должна быть бледно-голубой, как на скрине */
 
+/* Основная зеленая кнопка */
 .button--primary {
-    background-color: #E3F5F5; /* Светло-голубой фон */
-    color: #35B3A9;            /* Темно-бирюзовый текст */
+    background-color: #35B3A9; /* Тот самый цвет */
+    color: #ffffff;            /* Белый текст */
+    border: none;
+    border-radius: 4px;        /* Если нужно скругление 4px (или 8px как у карточек) */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;          /* Жирный текст */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Эффект при наведении (становится чуть темнее) */
+.button--primary:hover {
+    background-color: #299D94;
 }
 
 .button--primary:hover {
@@ -161,107 +173,347 @@ ul { list-style: none; }
 /* Бургер скрыт на десктопе */
 .burger-checkbox, .burger-btn { display: none; }
 
-/* --- БЛОГ ГЛАВНАЯ --- */
-.hero { padding: 40px 0; }
-.hero__title { font-size: 48px; margin-bottom: 24px; }
+/* --- БЛОГ: ЗАГОЛОВОК И ФИЛЬТРЫ (START) --- */
 
-.filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+.blog-hero {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #fff; /* Фон белый */
+}
+
+/* 1. Хлебные крошки (Путь: Главная > Блог) */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #999;
+}
+
+.breadcrumbs li {
+    display: flex;
+    align-items: center;
+}
+
+/* Стрелочка между ссылками */
+.breadcrumbs li:not(:last-child)::after {
+    content: '›';
+    font-size: 20px;
+    margin: 0 10px;
+    color: #ccc;
+    line-height: 1;
+    padding-bottom: 2px; /* Небольшая коррекция высоты стрелки */
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #999;
+    transition: color 0.3s;
+}
+
+.breadcrumbs a:hover {
+    color: #35B3A9; /* Цвет при наведении */
+}
+
+/* 2. Заголовок "Блог" */
+.blog-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #2D3440;
+    line-height: 1.2;
+}
+
+/* 3. Контейнер для кнопок-фильтров */
+/* --- ЛЕНТА ФИЛЬТРОВ (ОБНОВЛЕННАЯ) --- */
+
+.blog-filters {
+    display: flex;
+    flex-wrap: nowrap;       /* ЗАПРЕЩАЕМ перенос на новую строку */
+    overflow-x: auto;        /* Разрешаем горизонтальную прокрутку */
+    gap: 12px;               /* Отступы между кнопками */
+    padding-bottom: 10px;    /* Место, чтобы скроллбар не прилипал к кнопкам */
+
+    /* Скрываем полосу прокрутки для красоты (работает в Chrome/Safari/Opera) */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Скрываем полосу прокрутки (продолжение) */
+.blog-filters::-webkit-scrollbar {
+    display: none;
+}
+
 .filter-btn {
-    background: transparent;
-    border: 1px solid transparent; /* Или border: 1px solid #eee */
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #EAEAEA;
+
+    /* Уменьшаем боковые отступы, чтобы кнопки стали компактнее */
+    padding: 10px 14px;
+
+    border-radius: 40px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    font-size: 14px;
+    color: #2D3440;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
-.filter-btn--active, .filter-btn:hover {
-    color: var(--accent-color);
-    background-color: rgba(123, 97, 255, 0.1); /* Прозрачный фиолетовый */
+/* При наведении */
+.filter-btn:hover {
+    border-color: #16C8BB;
+    color: #2D3440; /* Текст остается темным */
 }
 
-/* СЕТКА (GRID) */
-.posts { padding-bottom: 80px; }
-.posts__grid {
+/* АКТИВНАЯ КНОПКА (ТЕПЕРЬ ТОЛЬКО ОБВОДКА) */
+.filter-btn--active {
+    background-color: #fff;    /* Фон остается белым */
+    border-color: #16C8BB;     /* Цвет рамки (бирюзовый) */
+    color: #2D3440;            /* Текст темный */
+
+    /* Если нужно сделать текст чуть жирнее у активной */
+    /* font-weight: 700; */
+}
+/* --- СЕТКА СТАТЕЙ И КАРТОЧКИ (START) --- */
+
+/* 1. Фон блока и отступы */
+.blog-posts {
+    /* Градиент: Сверху голубой (#EFF5FB), в самом низу переходит в белый (#FFF) */
+    background: linear-gradient(to bottom, #EFF5FB 0%, #EFF5FB 15%, #ffffff 100%);
+
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+/* 2. Сама сетка (Grid) */
+.posts-grid {
     display: grid;
-    /* 3 колонки, если есть место, иначе перенос */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px; /* Расстояние между карточками */
+    /* Магия: делаем 6 колонок, чтобы удобно делить (50% и 33%) */
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px; /* Расстояние между карточками */
+    margin-bottom: 60px;
 }
 
-/* КАРТОЧКА */
+/* 3. Стиль карточки (Окошко) */
 .card {
+    background-color: #fff;
+    border-radius: 16px;    /* Скругление 16px */
+    overflow: hidden;       /* Обрезаем всё, что торчит */
     display: flex;
     flex-direction: column;
-    background: var(--white);
-    /* Если в макете есть тень или бордер */
-    border-radius: 8px;
-    overflow: hidden;
-}
-.card:hover .card__title { color: var(--accent-color); cursor: pointer; }
+    height: 100%;
 
-.card__img-wrapper {
-    height: 200px;
-    overflow: hidden;
+    /* Обычная (маленькая) карточка занимает 2 колонки из 6 (1/3) */
+    grid-column: span 2;
 }
+
+/* Большая карточка занимает 3 колонки из 6 (1/2) */
+.card--large {
+    grid-column: span 3;
+}
+
+/* 4. Картинка и Бейджи */
+.card__img-wrapper {
+    position: relative; /* Важно! Чтобы бейджики позиционировались внутри */
+    width: 100%;
+    height: 250px;
+}
+
+.card--large .card__img-wrapper {
+    height: 320px; /* У больших карточек картинка выше */
+}
+
 .card__img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Чтобы картинка не плющилась */
+    object-fit: cover; /* Картинка заполняет блок красиво */
+    display: block;
 }
-.card__content { padding: 16px 0; display: flex; flex-direction: column; flex-grow: 1;}
-.card__meta {
-    font-size: 14px;
-    color: var(--grey);
-    margin-bottom: 8px;
+
+/* Контейнер для бейджей (поверх картинки) */
+.card__badges {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2;
 }
-.card__title { font-size: 20px; margin-bottom: 10px; font-weight: 700; line-height: 1.3; }
-.card__desc { font-size: 16px; color: var(--text-color); margin-bottom: 16px; }
+
+/* Сами плашки (Self, Самооценка...) */
+.card__badge {
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2D3440;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    align-self: flex-start; /* Чтобы бейдж был шириной по тексту, а не во всю длину */
+    opacity: 0.7;
+}
+
+/* 5. Текстовая часть карточки */
+.card__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card__title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.card__title a {
+    text-decoration: none;
+    color: #2D3440;
+    transition: color 0.3s;
+}
+
+.card__title a:hover {
+    color: #35B3A9;
+}
+
+.card--large .card__title {
+    font-size: 24px; /* Заголовок крупнее у больших */
+}
+
+.card__author {
+    font-size: 14px;
+    color: #494949;
+    margin-bottom: 8px;
+}
+
+.card__desc {
+    font-size: 14px;
+    color: #8F8F8F;
+    line-height: 1.5;
+    margin-bottom: 20px;
+
+    /* Обрезаем текст троеточием, если длинный */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card__date {
+    margin-top: auto;
+    font-size: 12px;
+    color: #999;
+}
+
+/* 6. Кнопка "Ещё" */
+.blog-btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.button--large {
+    padding: 15px 50px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+/* --- АДАПТИВНОСТЬ СЕТКИ --- */
+
+/* Планшет */
+@media (max-width: 1024px) {
+    .posts-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+    }
+    /* Сбрасываем разницу между большими и маленькими */
+    .card, .card--large {
+        grid-column: span 1;
+    }
+    .card--large .card__img-wrapper {
+        height: 250px;
+    }
+    .card--large .card__title {
+        font-size: 18px;
+    }
+}
+
+/* Мобильный */
+@media (max-width: 600px) {
+    .posts-grid {
+        grid-template-columns: 1fr; /* 1 колонка */
+    }
+}
+/* --- СЕТКА СТАТЕЙ И КАРТОЧКИ (END) --- */
 
 /* --- FOOTER --- */
 /* --- FOOTER --- */
+/* --- FOOTER FINAL (MONTSERRAT UPDATE) --- */
 .footer {
-    background-color: #3A68B8; /* <-- ЗАМЕНИ НА ЦВЕТ ИЗ FIGMA */
+    background-color: #2E5B8E;
     color: #ffffff;
+    /* Важно: ставим шрифт Montserrat для всего футера */
+    font-family: 'Montserrat', sans-serif;
     padding: 60px 0 30px 0;
-    margin-top: auto; /* Прижимает футер к низу */
+    margin-top: auto;
 }
 
-/* Сетка для верхней части (4 колонки) */
-/* 1. Настройка колонок (чтобы блок справа уехал подальше) */
+/* Сетка верхней части */
 .footer__content {
     display: grid;
     /*
-       max-content = ширина по содержимому (меню)
-       1fr = занимает всё свободное место (форма подписки)
-       auto = ширина по содержимому (соцсети)
+       1 и 2 колонка: max-content (ширина по тексту, чтобы было компактно как на скрине)
+       3 колонка: 1fr (растягивается, занимая всё место)
+       4 колонка: auto (под размер контента)
     */
     grid-template-columns: max-content max-content 1fr auto;
-    gap: 40px; /* Отступ между колонками */
+    gap: 40px; /* Расстояние между блоками */
     margin-bottom: 40px;
 }
 
-/* Ссылки в меню */
+/* ССЫЛКИ И МЕНЮ */
+.footer__list {
+    list-style: none;
+    padding: 0;
+    /* Ограничиваем ширину колонок меню, чтобы они не разъезжались,
+       если там будет длинное слово, но max-content обычно справляется */
+    min-width: 120px;
+}
+
 .footer__list li {
     margin-bottom: 12px;
 }
 
 .footer__link {
-    font-weight: 500; /* Чуть жирнее */
+    opacity: 1; /* Убираем прозрачность, чтобы были ярче */
     font-size: 16px;
-    opacity: 1;
+    font-weight: 700; /* Жирный шрифт как на макете */
+    color: #fff;
 }
 
 .footer__link:hover {
-    opacity: 0.8;
     text-decoration: underline;
+    opacity: 0.8;
 }
 
-/* Блок подписки */
+/* ПОДПИСКА (3-я колонка) */
+.footer__subscribe {
+    max-width: 480px; /* Ограничиваем ширину как на фиолетовом скрине (там 486px) */
+}
+
 .footer__subscribe-title {
     font-weight: 700;
     margin-bottom: 20px;
+    font-size: 16px;
     line-height: 1.4;
 }
 
@@ -271,108 +523,113 @@ ul { list-style: none; }
 }
 
 .footer__input {
-    flex-grow: 1; /* Поле занимает всё доступное место */
-    padding: 12px 16px;
+    flex-grow: 1;
+    /* Уменьшил паддинги (было 12px, стало 8px 12px), чтобы полоска была тоньше */
+    padding: 8px 12px;
     border: none;
-    border-radius: 4px 0 0 4px; /* Закругление только слева */
+    border-radius: 4px 0 0 4px;
     outline: none;
+    font-family: 'Montserrat', sans-serif; /* Чтобы placeholder был правильным шрифтом */
     font-size: 14px;
 }
 
 .footer__btn {
-    background-color: #35B3A9; /* Бирюзовый цвет кнопки */
+    background-color: #35B3A9;
     color: white;
     border: none;
-    padding: 0 20px;
-    border-radius: 0 4px 4px 0; /* Закругление только справа */
+    /* Кнопка тоже чуть компактнее */
+    padding: 0 15px;
+    border-radius: 0 4px 4px 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s;
 }
 
 .footer__btn:hover {
-    background-color: #2a9d94;
+    background-color: #298e86;
 }
 
 .footer__disclaimer {
-    font-size: 12px;
-    opacity: 0.6; /* Полупрозрачный текст */
+    font-size: 12px; /* Мелкий текст */
+    opacity: 0.6;
     line-height: 1.4;
+    max-width: 400px; /* Чтобы текст переносился как в макете */
 }
 
-/* Блок Сколково и Соцсети */
+/* ПРАВАЯ КОЛОНКА (Сколково + Соцсети) */
 .footer__socials-block {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Прижимает содержимое к правому краю колонки */
+    align-items: flex-start; /* Прижато влево внутри своей колонки */
 }
 
 .footer__sk-wrapper {
     display: flex;
-    align-items: center; /* Центровка текста и лого по вертикали */
-    gap: 12px; /* Отступ между лого и текстом */
+    align-items: center;
+    gap: 15px;
     margin-bottom: 25px;
-    background-color: rgba(255,255,255, 0.1); /* Легкая подложка (если есть в макете) */
-    /* Если подложки нет — удали строку background-color и padding */
-    padding: 5px 10px;
-    border-radius: 4px;
 }
 
 .footer__sk-logo {
-    width: 32px; /* Подбери размер логотипа */
-    height: auto;
+    max-height: 40px;
+    /* Если логотип черный PNG, используй filter, чтобы сделать белым: */
+    /* filter: brightness(0) invert(1); */
 }
 
 .footer__sk-text {
     font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-    opacity: 0.9;
-    letter-spacing: 0.5px;
+    opacity: 0.8;
 }
-/* Нижняя часть */
+
+.footer__socials-icons {
+    display: flex;
+    gap: 15px;
+}
+
+/* НИЖНЯЯ ЛИНИЯ */
+.footer__divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+}
+
 .footer__bottom {
     display: flex;
-    justify-content: flex-start; /* Прижимаем влево */
-    gap: 40px; /* Фиксированный отступ между элементами */
+    align-items: center;
+    /* Расстояние между элементами внизу фиксированное */
+    gap: 40px;
     font-size: 14px;
     opacity: 0.8;
-    flex-wrap: wrap; /* Чтобы на моб. не ломалось */
 }
 
+/* Настройки конкретных элементов низа */
+.footer__copyright {
+    /* Можно задать мин. ширину, если нужно выровнять идеально под меню */
+    min-width: 120px;
+}
 
-/* --- АДАПТИВНОСТЬ ФУТЕРА --- */
+.footer__legal {
+    white-space: nowrap; /* ЗАПРЕЩАЕМ перенос строки для документов */
+}
 
-/* Планшет (2 колонки) */
+/* АДАПТИВНОСТЬ */
 @media (max-width: 992px) {
     .footer__content {
-        /* На планшете возвращаем обычную сетку */
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        grid-template-columns: 1fr 1fr; /* 2 колонки на планшете */
     }
-
-    .footer__socials-block {
-        align-items: flex-start; /* На планшете выравниваем влево */
-    }
-}
-/* Мобильный (1 колонка) */
-@media (max-width: 576px) {
-    .footer__content {
-        grid-template-columns: 1fr; /* Всё в одну колонку */
-        gap: 30px;
-    }
-
     .footer__bottom {
         flex-direction: column;
+        align-items: flex-start;
         gap: 15px;
-        align-items: center;
-        text-align: center;
     }
 }
 
-
+@media (max-width: 576px) {
+    .footer__content {
+        grid-template-columns: 1fr; /* 1 колонка на телефоне */
+    }
+}
 /* --- АДАПТИВНОСТЬ (Media Queries) --- */
 
 /* Планшет (меньше 1024px) */
@@ -585,4 +842,18 @@ ul { list-style: none; }
         order: 2; /* Сайдбар уходит вниз под статью */
         margin-top: 40px;
     }
+}
+
+/* --- ИСПРАВЛЕНИЕ КНОПКИ В ШАПКЕ --- */
+
+/* Обращаемся к ней по уникальному классу header__btn */
+.header__btn {
+    background-color: #E3F5F5 !important; /* Светло-голубой фон */
+    color: #35B3A9 !important;            /* Текст цвета морской волны */
+}
+
+/* Эффект при наведении для шапки */
+.header__btn:hover {
+    background-color: #d2ebeb !important; /* Чуть темнее при наведении */
+    opacity: 1;
 }
