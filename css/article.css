@@ -1,0 +1,288 @@
+/* ============================= */
+/* ARTICLE.CSS — ТОЛЬКО СТАТЬЯ */
+/* ============================= */
+
+/* 1. ХЛЕБНЫЕ КРОШКИ */
+.breadcrumbs {
+    display: flex; align-items: center; list-style: none; padding: 0; margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; color: #999; margin-top: 40px;
+}
+.breadcrumbs li:not(:last-child)::after { content: '›'; font-size: 20px; margin: 0 10px; color: #ccc; line-height: 1; padding-bottom: 2px; }
+.breadcrumbs a:hover { color: #35B3A9; }
+
+/* 2. ЗАГОЛОВОК */
+.article-header { margin-bottom: 40px; }
+.article-title { font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; color: #2D3440; }
+.article-meta { font-size: 14px; color: #999; margin-bottom: 30px; }
+.article-hero-img { width: 100%; max-width: 690px; height: 331px; object-fit: cover; border-radius: 16px; display: block; margin-bottom: 40px; }
+
+/* 3. СТРУКТУРА СТРАНИЦЫ (GRID/FLEX) */
+.article-layout {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; position: relative; margin-bottom: 80px;
+}
+.article-content {
+    width: 691px; min-width: 691px; position: relative; z-index: 50;
+}
+.sidebar {
+    width: 282px; min-width: 282px; display: flex; flex-direction: column; gap: 30px; position: relative; z-index: 1;
+}
+
+/* 4. ТИПОГРАФИКА И ЭЛЕМЕНТЫ ВНУТРИ СТАТЬИ */
+.article-content h3 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; margin-top: 40px; margin-bottom: 20px; color: #2D3440; }
+.article-content p { font-size: 16px; line-height: 1.6; margin-bottom: 20px; color: #2D3440; }
+
+./* Стили для оглавления */
+.table-of-contents {
+    margin-bottom: 40px;
+}
+.table-of-contents ul {
+    padding-left: 20px; /* Отступ для основного списка */
+}
+/* Стили для ВЛОЖЕННОГО списка */
+.table-of-contents ul ul {
+    padding-left: 20px; /* Дополнительный отступ слева */
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.table-of-contents li {
+    list-style: disc;
+    margin-bottom: 10px;
+    color: #35B3A9; /* Цвет точек */
+}
+.table-of-contents a {
+    text-decoration: underline;
+    color: #2D3440;
+}
+
+.article-quote { background-color: #F3F4F6; padding: 30px; border-radius: 16px; margin: 40px 0; font-style: italic; }
+.article-quote cite { display: block; margin-top: 15px; font-weight: 700; font-style: normal; }
+
+.custom-list { list-style: none; padding: 0; margin-bottom: 30px; }
+.custom-list li { position: relative; padding-left: 20px; margin-bottom: 15px; color: #2D3440; }
+.custom-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background-color: #35B3A9; border-radius: 50%; }
+
+.article-split-block { display: flex; gap: 30px; margin: 40px 0; align-items: flex-start; }
+.article-split-block + p, .text-indent { margin-top: 60px; }
+.article-split-img { width: 282px; height: 380px; object-fit: cover; border-radius: 16px; flex-shrink: 0; }
+.article-split-img--small { width: 281px; height: 174px; }
+
+.article-gallery { display: flex; gap: 25px; margin: 40px 0; align-items: flex-start; }
+.article-gallery-item { flex: 1; }
+.gallery-img { width: 333px; height: 235px; object-fit: cover; border-radius: 16px; display: block; margin-bottom: 15px; }
+
+.exercise-box { padding: 30px; border-radius: 16px; margin: 40px 0; }
+.exercise-box h4 { margin-bottom: 15px; font-weight: 700; font-size: 18px; }
+.exercise-box--yellow { background-color: #FEFAEC; }
+.exercise-box--pink { background-color: #FFF3EB; }
+.exercise-box--green { background-color: #03B2A51A; }
+
+.text-cols-2 { display: flex; gap: 30px; margin-bottom: 40px; }
+.text-cols-2 p { flex: 1; margin: 0; }
+.article-divider { display: flex; justify-content: center; width: 100%; margin: 40px 0; }
+
+.article-tags-list { display: flex; flex-wrap: wrap; margin-top: 60px; margin-bottom: 30px; }
+.article-tags-list a { font-size: 14px; color: #8F8F8F; margin-right: 10px; }
+.article-tags-list a:not(:last-child)::after { content: '·'; margin-left: 10px; }
+.article-bottom-line { border: none; border-top: 1px solid #EAEAEA; width: 100%; }
+
+/* --- ЦИТАТА С РОЗОВЫМ ПЯТНОМ (БЕЗ КАРТИНКИ) --- */
+/* --- ЦИТАТА С РОЗОВЫМ ПЯТНОМ (FINAL FIX) --- */
+/* --- ЦИТАТА С РОЗОВЫМ ПЯТНОМ (FINAL FIGMA) --- */
+.blob-quote {
+    position: relative;
+    margin: 60px 0;
+    padding: 40px 20px;
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+}
+
+.blob-quote p {
+    position: relative;
+    z-index: 2;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #2D3440;
+    margin: 0;
+}
+
+/* Рисуем пятно на фоне через псевдоэлемент */
+.blob-quote::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px; /* Размер пятна */
+    height: 168px;
+    background-color: #FEEBEF; /* Нежно-розовый цвет */
+    /* Магия скругления для создания формы "кляксы" */
+    border-radius: 43% 57% 70% 30% / 30% 62% 38% 70%;
+    z-index: -1; /* Кладем под текст */
+}
+
+/* 5. САЙДБАР ВИДЖЕТЫ */
+.sidebar-widget { border-radius: 16px; overflow: hidden; }
+.widget-blue {
+    background-color: #E6F0FD;
+    border-radius: 16px;
+    text-align: center;
+
+    /* Фиксируем размеры по макету */
+    width: 100%;       /* Заполнит 282px от родителя */
+    min-height: 512px; /* Высота из Фигмы */
+
+    /* Используем Flex, чтобы грамотно распределить отступы */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Распределяет контент по высоте */
+    padding-bottom: 24px; /* Отступ снизу до кнопки */
+    padding-top: 30px;    /* Отступ сверху до картинки */
+}
+
+/* Картинка внутри виджета */
+.widget-blue .widget-img {
+    width: 200px; /* Подбираем визуально, чтобы не прилипала к краям */
+    height: auto;
+    margin: 0 auto; /* Центруем картинку */
+    display: block;
+}
+
+/* Блок с текстом и кнопкой */
+.widget-content {
+    padding: 0 24px; /* Отступы по бокам для текста */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Занимает всё свободное место */
+    justify-content: flex-end; /* Прижимает содержимое к низу */
+}
+
+/* Заголовок виджета */
+.widget-blue h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #2D3440;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+
+/* Текст описания */
+.widget-blue p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555555;
+    margin-bottom: 24px;
+}
+
+/* Кнопка */
+.widget-blue .widget-btn {
+    width: 100%; /* На всю ширину контейнера */
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 16px;
+}
+.widget-btn { width: 100%; margin-top: 15px; }
+.widget-profile { border: 1px solid #EAEAEA; background: #fff; padding: 20px; }
+.profile-avatar { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; object-fit: cover; display: block; margin-left: auto; margin-right: auto;}
+.profile-header { text-align: center; margin-bottom: 15px; }
+.widget-gift { color: #fff; padding: 20px; text-align: center; min-height: 200px; }
+/* Зеленый виджет */
+.widget-promo {
+    background-color: #35B3A9; /* Бирюзовый фон */
+    color: #fff;
+    text-align: center;
+}
+.widget-promo h4 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.promo-img {
+    margin: 0 auto; /* Центруем картинку */
+    display: block;
+}
+
+/* 6. КЛЯКСА */
+body {
+    position: relative; /* Важно: чтобы координаты кляксы считались от страницы */
+    overflow-x: hidden; /* Чтобы клякса не создавала горизонтальную прокрутку */
+}
+
+.decorative-blob {
+    position: absolute;
+    z-index: -1; /* Уводим на задний план */
+
+    /* Размеры (как ты скидывала) */
+    width: 686px;
+    height: 606px;
+
+    /* КООРДИНАТЫ (Подгоняем относительно сайдбара) */
+    /* Сдвигаем влево, чтобы она залезла под текст */
+    left: 300px;
+
+    /* Сдвигаем вниз, чтобы встала напротив блока с женщиной */
+    /* Поиграй с этим числом, если нужно выше/ниже */
+    top: 1650px;
+
+    /* Если SVG уже повернута, transform не нужен. Если нет - раскомментируй */
+    /* transform: rotate(180deg); */
+
+    pointer-events: none; /* Чтобы сквозь неё можно было кликать */
+}
+
+/* Добавляем отступ для текста, который идет сразу после блока "Картинка + Текст" */
+.article-split-block + p {
+    margin-top: 60px; /* Отталкиваем текст вниз */
+}
+
+.decorative-blob-down{
+    position: absolute;
+    z-index: -1; /* Уводим на задний план */
+
+    /* Размеры (как ты скидывала) */
+    width: 272px;
+    height: 240px;
+
+    /* КООРДИНАТЫ (Подгоняем относительно сайдбара) */
+    /* Сдвигаем влево, чтобы она залезла под текст */
+    left: 400px;
+
+    /* Сдвигаем вниз, чтобы встала напротив блока с женщиной */
+    /* Поиграй с этим числом, если нужно выше/ниже */
+    top: 5600px;
+
+    /* Если SVG уже повернута, transform не нужен. Если нет - раскомментируй */
+    /* transform: rotate(180deg); */
+
+    pointer-events: none; /* Чтобы сквозь неё можно было кликать */
+}
+
+}
+/* На мобильных устройствах сбрасываем высоту, чтобы было красиво */
+@media (max-width: 768px) {
+    .article-split-img--small {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* 7. НИЖНИЙ CTA БЛОК */
+.bottom-cta-section { background: linear-gradient(to bottom, #fff 0%, #EFF5FB 100%); padding: 80px 0 0 0; margin-top: 60px; }
+.bottom-cta-container { display: flex; align-items: center; justify-content: space-between; }
+.bottom-cta-text h2 { font-size: 40px; font-weight: 700; margin-bottom: 20px; }
+.bottom-cta-img img { display: block; max-height: 350px; }
+
+/* АДАПТИВ */
+@media (max-width: 1024px) {
+    .article-layout { flex-direction: column; width: 100%; }
+    .article-content, .sidebar { width: 100%; min-width: 0; }
+    .article-hero-img, .article-split-img, .gallery-img { width: 100%; height: auto; }
+    .article-split-block, .text-cols-2, .article-gallery { flex-direction: column; }
+    .bottom-cta-container { flex-direction: column; text-align: center; }
+}
