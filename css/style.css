@@ -83,6 +83,47 @@ ul { list-style: none; }
 }
 .header__btn:hover { background-color: #d2ebeb !important; }
 
+/* --- Breadcrumbs (GLOBAL) --- */
+.breadcrumbs {
+    display: flex;          /* Выстраивает в ряд */
+    align-items: center;    /* Центрирует по вертикали */
+    list-style: none;       /* Убирает точки списка */
+    padding: 0;
+
+    /* Отступы */
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #999;
+}
+
+.breadcrumbs li {
+    display: flex;
+    align-items: center;
+}
+
+/* Стрелочка между ссылками */
+.breadcrumbs li:not(:last-child)::after {
+    content: '›';
+    font-size: 20px;
+    margin: 0 10px;
+    color: #ccc;
+    line-height: 1;
+    padding-bottom: 2px;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #999;
+    transition: color 0.3s;
+}
+
+.breadcrumbs a:hover {
+    color: #35B3A9;
+}
+
 /* Бургер (Скрыт на десктопе) */
 .burger-checkbox, .burger-btn { display: none; }
 

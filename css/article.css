@@ -2,7 +2,7 @@
 /* ARTICLE.CSS — ТОЛЬКО СТАТЬЯ */
 /* ============================= */
 
-/* 1. ХЛЕБНЫЕ КРОШКИ */
+/* 1. Breadcrumbs */
 .breadcrumbs {
     display: flex; align-items: center; list-style: none; padding: 0; margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif; font-size: 14px; color: #999; margin-top: 40px;
@@ -18,7 +18,7 @@
 
 /* 3. СТРУКТУРА СТРАНИЦЫ (GRID/FLEX) */
 .article-layout {
-    display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; position: relative; margin-bottom: 80px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; position: relative; margin-bottom: 20px;
 }
 .article-content {
     width: 691px; min-width: 691px; position: relative; z-index: 50;
@@ -29,46 +29,135 @@
 
 /* 4. ТИПОГРАФИКА И ЭЛЕМЕНТЫ ВНУТРИ СТАТЬИ */
 .article-content h3 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; margin-top: 40px; margin-bottom: 20px; color: #2D3440; }
-.article-content p { font-size: 16px; line-height: 1.6; margin-bottom: 20px; color: #2D3440; }
+.article-content p { font-size: 16px; font-weight: 500; line-height: 1.6; margin-bottom: 20px; color: #2D3440; }
 
-./* Стили для оглавления */
+/* --- ОГЛАВЛЕНИЕ (TABLE OF CONTENTS) --- */
+
 .table-of-contents {
     margin-bottom: 40px;
 }
-.table-of-contents ul {
-    padding-left: 20px; /* Отступ для основного списка */
+
+.table-of-contents h4 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #2D3440;
 }
-/* Стили для ВЛОЖЕННОГО списка */
-.table-of-contents ul ul {
-    padding-left: 20px; /* Дополнительный отступ слева */
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.table-of-contents li {
-    list-style: disc;
-    margin-bottom: 10px;
-    color: #35B3A9; /* Цвет точек */
-}
+
 .table-of-contents a {
     text-decoration: underline;
     color: #2D3440;
+    line-height: 1.5;
 }
+.table-of-contents a:hover {
+    text-decoration: none;
+    color: #35B3A9;
+}
+
+/* Сброс отступов для всех списков */
+.table-of-contents ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Уровень 1: отступ под точку */
+.table-of-contents > ul > li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+/* Точка только для Уровня 1 */
+.table-of-contents > ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background-color: #35B3A9;
+    border-radius: 50%;
+}
+
+/* --- УНИВЕРСАЛЬНЫЙ СДВИГ ДЛЯ ВСЕХ ВЛОЖЕННЫХ СПИСКОВ --- */
+
+.table-of-contents ul ul {
+    margin-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+
+.table-of-contents ul ul li {
+    padding-left: 0;
+    margin-bottom: 8px;
+}
+
+.table-of-contents ul ul li::before {
+    display: none;
+}
+/* --- ОГЛАВЛЕНИЕ END --- */
 
 .article-quote { background-color: #F3F4F6; padding: 30px; border-radius: 16px; margin: 40px 0; font-style: italic; }
 .article-quote cite { display: block; margin-top: 15px; font-weight: 700; font-style: normal; }
 
 .custom-list { list-style: none; padding: 0; margin-bottom: 30px; }
-.custom-list li { position: relative; padding-left: 20px; margin-bottom: 15px; color: #2D3440; }
+.custom-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #2D3440;
+}
 .custom-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background-color: #35B3A9; border-radius: 50%; }
 
-.article-split-block { display: flex; gap: 30px; margin: 40px 0; align-items: flex-start; }
+/* Настройки для блока "Картинка + Текст" */
+.article-split-block {
+    display: flex;
+    gap: 30px;
+    margin: 40px 0;
+    align-items: flex-start;
+}
+
+
+.article-split-text p:first-child {
+    margin-top: 0;
+}
 .article-split-block + p, .text-indent { margin-top: 60px; }
-.article-split-img { width: 282px; height: 380px; object-fit: cover; border-radius: 16px; flex-shrink: 0; }
+.article-split-img { width: 282px; height: 380px; object-fit: cover; flex-shrink: 0; }
 .article-split-img--small { width: 281px; height: 174px; }
+
+/* Блок с картинкой и подписью */
+.article-figure {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Сама картинка */
+.article-img {
+    width: 100%;
+    height: 331px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Подпись под картинкой */
+.article-figure figcaption {
+    margin-top: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #8F8F8F;
+    line-height: 1.4;
+}
 
 .article-gallery { display: flex; gap: 25px; margin: 40px 0; align-items: flex-start; }
 .article-gallery-item { flex: 1; }
-.gallery-img { width: 333px; height: 235px; object-fit: cover; border-radius: 16px; display: block; margin-bottom: 15px; }
+.gallery-img { width: 333px; height: 235px; object-fit: cover; display: block; margin-bottom: 15px; }
 
 .exercise-box { padding: 30px; border-radius: 16px; margin: 40px 0; }
 .exercise-box h4 { margin-bottom: 15px; font-weight: 700; font-size: 18px; }
@@ -80,14 +169,21 @@
 .text-cols-2 p { flex: 1; margin: 0; }
 .article-divider { display: flex; justify-content: center; width: 100%; margin: 40px 0; }
 
-.article-tags-list { display: flex; flex-wrap: wrap; margin-top: 60px; margin-bottom: 30px; }
-.article-tags-list a { font-size: 14px; color: #8F8F8F; margin-right: 10px; }
-.article-tags-list a:not(:last-child)::after { content: '·'; margin-left: 10px; }
-.article-bottom-line { border: none; border-top: 1px solid #EAEAEA; width: 100%; }
+.article-tags-list { display: flex; flex-wrap: wrap; margin-top: 20px; margin-bottom: 30px; }
+.article-tags-list a { font-size: 14px; color: #2963A3; margin-right: 10px; }
+.article-tags-list a:not(:last-child)::after { content: '·'; margin-left: 10px; color: #999; }
 
-/* --- ЦИТАТА С РОЗОВЫМ ПЯТНОМ (БЕЗ КАРТИНКИ) --- */
-/* --- ЦИТАТА С РОЗОВЫМ ПЯТНОМ (FINAL FIX) --- */
-/* --- ЦИТАТА С РОЗОВЫМ ПЯТНОМ (FINAL FIGMA) --- */
+/* --- РАЗДЕЛИТЕЛЬНАЯ ЛИНИЯ --- */
+.article-bottom-line {
+    border: none;
+    border-top: 1px solid #EAEAEA;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+/* --- ЦИТАТА С РОЗОВЫМ ПЯТНОМ --- */
 .blob-quote {
     position: relative;
     margin: 60px 0;
@@ -109,19 +205,18 @@
     margin: 0;
 }
 
-/* Рисуем пятно на фоне через псевдоэлемент */
+/* Рисуем пятно на фоне */
 .blob-quote::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 240px; /* Размер пятна */
+    width: 240px;
     height: 168px;
-    background-color: #FEEBEF; /* Нежно-розовый цвет */
-    /* Магия скругления для создания формы "кляксы" */
+    background-color: #FEEBEF;
     border-radius: 43% 57% 70% 30% / 30% 62% 38% 70%;
-    z-index: -1; /* Кладем под текст */
+    z-index: -1;
 }
 
 /* 5. САЙДБАР ВИДЖЕТЫ */
@@ -130,141 +225,351 @@
     background-color: #E6F0FD;
     border-radius: 16px;
     text-align: center;
-
-    /* Фиксируем размеры по макету */
-    width: 100%;       /* Заполнит 282px от родителя */
-    min-height: 512px; /* Высота из Фигмы */
-
-    /* Используем Flex, чтобы грамотно распределить отступы */
+    width: 100%;
+    min-height: 512px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Распределяет контент по высоте */
-    padding-bottom: 24px; /* Отступ снизу до кнопки */
-    padding-top: 30px;    /* Отступ сверху до картинки */
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    padding-top: 35px;
 }
 
 /* Картинка внутри виджета */
 .widget-blue .widget-img {
-    width: 200px; /* Подбираем визуально, чтобы не прилипала к краям */
-    height: auto;
-    margin: 0 auto; /* Центруем картинку */
+    width: 257px;
+    height: 195px;
+    object-fit: contain;
     display: block;
 }
 
 /* Блок с текстом и кнопкой */
 .widget-content {
-    padding: 0 24px; /* Отступы по бокам для текста */
+    width: 100%;
+    padding: 0 24px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Занимает всё свободное место */
-    justify-content: flex-end; /* Прижимает содержимое к низу */
 }
 
 /* Заголовок виджета */
 .widget-blue h4 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1.4;
     color: #2D3440;
-    margin-bottom: 12px;
-    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-top: 0;
 }
 
 /* Текст описания */
 .widget-blue p {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 20px;
     color: #555555;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 /* Кнопка */
 .widget-blue .widget-btn {
-    width: 100%; /* На всю ширину контейнера */
+    width: 100%;
     padding: 12px;
     border-radius: 4px;
     font-weight: 700;
     font-size: 16px;
 }
 .widget-btn { width: 100%; margin-top: 15px; }
-.widget-profile { border: 1px solid #EAEAEA; background: #fff; padding: 20px; }
-.profile-avatar { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; object-fit: cover; display: block; margin-left: auto; margin-right: auto;}
-.profile-header { text-align: center; margin-bottom: 15px; }
-.widget-gift { color: #fff; padding: 20px; text-align: center; min-height: 200px; }
-/* Зеленый виджет */
-.widget-promo {
-    background-color: #35B3A9; /* Бирюзовый фон */
-    color: #fff;
-    text-align: center;
+
+/* Виджет 2: Психолог */
+.widget-profile {
+    border: 1px solid #EAEAEA;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    min-height: 481px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
-.widget-promo h4 {
-    margin-top: 15px;
+
+
+/* --- БЕЙДЖИ  --- */
+.profile-badges {
+    position: absolute;
+    top: 24px;
+    left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    width: auto;
+}
+
+.profile-badge {
+    width: auto;
+    background-color: #F9F9F9;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.25px;
+    color: #2D3440;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px 3px 6px;
+}
+
+/* --- АВАТАР И ИНФО --- */
+.profile-header {
+    text-align: center;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
-.promo-img {
-    margin: 0 auto; /* Центруем картинку */
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 10px auto;
     display: block;
+}
+
+.profile-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    color: #2D3440;
+}
+
+.profile-job {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 2px;
+}
+
+.profile-exp {
+    font-size: 14px;
+    color: #999;
+}
+
+/* --- РАЗДЕЛИТЕЛЬ --- */
+.profile-divider {
+    border: none;
+    border-top: 1px solid #EAEAEA;
+    width: 100%;
+    margin: 15px 0;
+}
+
+/* --- СПИСОК (С ТОЧКАМИ) --- */
+.profile-body h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2D3440;
+}
+
+.profile-list {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.profile-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.profile-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 6px;
+    height: 6px;
+    background-color: #35B3A9;
+    border-radius: 50%;
+}
+
+/* --- КНОПКА (НИЖНЯЯ) --- */
+.widget-profile .widget-btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: auto;
+}
+
+
+/* Виджет 3: Подарок (Картинка) */
+.widget-gift {
+    width: 100%;
+    height: 292px;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.widget-gift .gift-content {
+    width: 100%;
+    height: 100%;
+}
+
+.widget-gift .gift-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- ВИДЖЕТ 4: ПАКЕТ СЕССИЙ --- */
+.widget-pack {
+    background-color: #fff;
+    border: 1px solid #EAEAEA;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    height: 304px;
+    position: relative;
+    overflow: hidden;
+    padding: 24px;
+}
+
+/* Заголовок "8 Видео сессий" */
+.widget-pack h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #2E5B8E;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Цифра "8" */
+.pack-num {
+    font-size: 24px;
+    color: #2E5B8E;
+}
+
+/* Текст описания */
+.pack-desc {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #2D3440;
+    width: 196px;
+    margin-bottom: 20px;
+}
+
+/* Цена */
+.pack-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: #2D3440;
+    margin-bottom: 20px;
+}
+
+/* Кнопка "Купить" */
+.widget-pack .widget-btn {
+    width: 108px;
+    height: 48px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- ПОЗИЦИОНИРОВАНИЕ ПОДАРКОВ --- */
+.pack-gift {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+}
+
+/* Красный подарок (На заднем плане) */
+.pack-gift--red {
+    width: 112px;
+    height: 80px;
+
+    right: 5px;
+    bottom: 0px;
+
+    z-index: 1;
+}
+
+/* Синий подарок (На переднем плане) */
+.pack-gift--blue {
+    width: 80px;
+    height: 65px;
+
+    right: 0;
+    bottom: 0;
+
+    z-index: 2;
 }
 
 /* 6. КЛЯКСА */
 body {
-    position: relative; /* Важно: чтобы координаты кляксы считались от страницы */
-    overflow-x: hidden; /* Чтобы клякса не создавала горизонтальную прокрутку */
+    position: relative;
+    overflow-x: hidden;
 }
 
 .decorative-blob {
     position: absolute;
-    z-index: -1; /* Уводим на задний план */
+    z-index: -1;
 
-    /* Размеры (как ты скидывала) */
     width: 686px;
     height: 606px;
 
-    /* КООРДИНАТЫ (Подгоняем относительно сайдбара) */
-    /* Сдвигаем влево, чтобы она залезла под текст */
     left: 300px;
+    top: 2480px;
 
-    /* Сдвигаем вниз, чтобы встала напротив блока с женщиной */
-    /* Поиграй с этим числом, если нужно выше/ниже */
-    top: 1650px;
-
-    /* Если SVG уже повернута, transform не нужен. Если нет - раскомментируй */
-    /* transform: rotate(180deg); */
-
-    pointer-events: none; /* Чтобы сквозь неё можно было кликать */
+    pointer-events: none;
 }
 
-/* Добавляем отступ для текста, который идет сразу после блока "Картинка + Текст" */
+
 .article-split-block + p {
-    margin-top: 60px; /* Отталкиваем текст вниз */
+    margin-top: 60px;
 }
 
 .decorative-blob-down{
     position: absolute;
-    z-index: -1; /* Уводим на задний план */
+    z-index: -1;
 
-    /* Размеры (как ты скидывала) */
     width: 272px;
     height: 240px;
 
-    /* КООРДИНАТЫ (Подгоняем относительно сайдбара) */
-    /* Сдвигаем влево, чтобы она залезла под текст */
     left: 400px;
+    top: 5669px;
 
-    /* Сдвигаем вниз, чтобы встала напротив блока с женщиной */
-    /* Поиграй с этим числом, если нужно выше/ниже */
-    top: 5600px;
-
-    /* Если SVG уже повернута, transform не нужен. Если нет - раскомментируй */
-    /* transform: rotate(180deg); */
-
-    pointer-events: none; /* Чтобы сквозь неё можно было кликать */
+    pointer-events: none;
 }
 
 }
-/* На мобильных устройствах сбрасываем высоту, чтобы было красиво */
+
 @media (max-width: 768px) {
     .article-split-img--small {
         width: 100%;
@@ -273,16 +578,64 @@ body {
 }
 
 /* 7. НИЖНИЙ CTA БЛОК */
-.bottom-cta-section { background: linear-gradient(to bottom, #fff 0%, #EFF5FB 100%); padding: 80px 0 0 0; margin-top: 60px; }
-.bottom-cta-container { display: flex; align-items: center; justify-content: space-between; }
-.bottom-cta-text h2 { font-size: 40px; font-weight: 700; margin-bottom: 20px; }
-.bottom-cta-img img { display: block; max-height: 350px; }
-
-/* АДАПТИВ */
-@media (max-width: 1024px) {
-    .article-layout { flex-direction: column; width: 100%; }
-    .article-content, .sidebar { width: 100%; min-width: 0; }
-    .article-hero-img, .article-split-img, .gallery-img { width: 100%; height: auto; }
-    .article-split-block, .text-cols-2, .article-gallery { flex-direction: column; }
-    .bottom-cta-container { flex-direction: column; text-align: center; }
+.bottom-cta-section {
+    background: linear-gradient(to bottom, #fff 0%, #EFF5FB 100%);
+    padding-top: 60px;
+    padding-bottom: 100px;
 }
+
+.bottom-cta-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Текстовая часть */
+.bottom-cta-text {
+    max-width: 500px;
+}
+
+.bottom-cta-text h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #2D3440;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.bottom-cta-text p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+/* Картинка (Пара) */
+.bottom-cta-img-wrapper {
+    flex-shrink: 0;
+}
+
+.bottom-cta-img {
+    display: block;
+    max-height: 350px;
+    width: auto;
+}
+
+/* АДАПТИВ НИЖНЕГО БЛОКА */
+@media (max-width: 992px) {
+    .bottom-cta-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bottom-cta-text {
+        margin-bottom: 40px;
+    }
+
+    .bottom-cta-img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+

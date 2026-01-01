@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Эмоциональное выгорание - YouTalk</title>
-    <!-- Подключение шрифтов (Roboto) -->
+    <!-- Подключение шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Твои стили -->
+    <!-- стили -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Потом подключаем стили СТАТЬИ -->
+    <!-- стили СТАТЬИ -->
     <link rel="stylesheet" href="css/article.css">
 </head>
 <body>
@@ -41,7 +41,7 @@
                 <li class="header__item"><a href="#" class="header__link">Психологам</a></li>
                 <li class="header__item"><a href="#" class="header__link">Сертификат</a></li>
                 <li class="header__item">
-                    <!-- Класс arrow добавляет стрелочку -->
+                    <!-- Класс arrow - стрелочка -->
                     <a href="#" class="header__link header__link--arrow">Материалы</a>
                 </li>
                 <li class="header__item"><a href="#" class="header__link">FAQ</a></li>
@@ -57,7 +57,7 @@
    <main>
     <div class="container">
 
-        <!-- 1. Хлебные крошки -->
+        <!-- 1. Breadcrumbs -->
         <ul class="breadcrumbs">
             <li><a href="index.html">Главная</a></li>
             <li><a href="index.html">Блог</a></li>
@@ -82,15 +82,29 @@
                 <div class="table-of-contents">
                     <h4>Содержание</h4>
                     <ul>
-                        <li><a href="#">Как понять, что отношения с мамой были...</a></li>
+                        <!-- Уровень 1 -->
+                        <li><a href="#">Как понять, что отношения с мамой были дисфункциональными и привели к травме?</a></li>
+
+                        <!-- Уровень 1 -->
                         <li><a href="#">Мама привет!</a>
-                            <!-- Вложенный список начинается ЗДЕСЬ -->
+                            <!-- Уровень 2 -->
                             <ul>
-                                <li><a href="#">Под под заголовок под заголовком</a></li>
-                                <li><a href="#">Под под под заголовок</a></li>
+                                <li><a href="#">Под под заголовок под заголовком</a>
+                                    <!-- Уровень 3 -->
+                                    <ul>
+                                        <li><a href="#">Под под под заголовок под заголовком</a>
+                                            <!-- Уровень 4  -->
+                                            <ul>
+                                                <li><a href="#">Под под под заголовок под заголовком</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
-                        <li><a href="#">Ну вот опять заголовок...</a></li>
+
+                        <li><a href="#">Ну вот опять заголовок который как «привет мама»</a></li>
+                        <li><a href="#">Как понять, что вы страдаете от материнской травмы?</a></li>
                     </ul>
                 </div>
 
@@ -114,7 +128,7 @@
                 </ul>
 
                 <figure class="article-figure">
-                    <!-- Не забудь положить картинку article-img-1.png в папку img -->
+
                     <img src="img/article-img-1.jpg" alt="Люди идут по лестнице" class="article-img">
                     <figcaption>Онтогенез речи отражает групповой эриксоновский гипноз.</figcaption>
                 </figure>
@@ -132,7 +146,7 @@
                 <!-- Блок с картинкой слева и текстом справа -->
                 <div class="article-split-block">
                     <div class="article-split-img">
-                        <!-- Не забудь добавить картинку article-img-2.png в папку img -->
+
                         <img src="img/article-img-2.jpg" alt="Женщина в шляпе">
                     </div>
                     <div class="article-split-text">
@@ -162,7 +176,7 @@
 
                 <!-- Блок с картинкой (Руки) и текстом -->
                 <div class="article-split-block">
-                    <!-- Не забудь сохранить картинку как article-img-3.png -->
+
                     <img src="img/article-img-3.jpg" alt="Руки с кольцами" class="article-split-img article-split-img--small">
 
                     <div class="article-split-text">
@@ -170,7 +184,7 @@
                     </div>
                 </div>
 
-                <!-- Текст после блока (с отступом, который мы настроили ранее) -->
+                <!-- Текст после блока -->
                 <p class="text-indent">Чем шире доступный вам репертуар реакций и чем более осознанно вы можете выбирать из него то, что лучше всего подойдет в каждой конкретной ситуации, тем больше будет ваша устойчивость к стрессу, депрессии, неопределенности, да и к жизни в целом.</p>
 
                 <!-- Розовая плашка с упражнением #2 -->
@@ -182,18 +196,18 @@
                 <!-- === БЛОК: ДВЕ КОЛОНКИ ТЕКСТА === -->
                 <div class="article-gallery">
                     <div class="article-gallery-item">
-                        <!-- Сохрани как article-img-4.png -->
+
                         <img src="img/article-img-4.jpg" alt="Стул и книги" class="gallery-img">
                         <p>Чем шире доступный вам репертуар реакций и чем более осознанно вы</p>
                     </div>
                     <div class="article-gallery-item">
-                        <!-- Сохрани как article-img-5.png -->
+
                         <img src="img/article-img-5.jpg" alt="Силуэт на вышке" class="gallery-img">
                         <p>Чем шире доступный вам репертуар реакций и чем более осознанно вы</p>
                     </div>
                 </div>
 
-                <!-- ТВОЯ МОЛНИЯ (Разделитель) -->
+                <!-- МОЛНИЯ (Разделитель) -->
                 <div class="article-divider">
                     <img src="img/divider.png" alt="Разделитель">
                 </div>
@@ -218,8 +232,7 @@
                     <a href="#">Тревога</a>
                 </div>
 
-                <!-- СЕРАЯ ПОЛОСКА ВНИЗУ -->
-                <hr class="article-bottom-line">
+
             </article>
 
 
@@ -232,25 +245,39 @@
                     <img src="img/side-1.png" alt="Иллюстрация" class="widget-img">
                     <div class="widget-content">
                         <h4>Загружаем свободные окошки</h4>
-                        <p>Все в порядке, сейчас мы перенаправим вас в сервис записи Qlick...</p>
+                        <p>Все в порядке, сейчас мы перенаправим вас в сервис записи Qlick, через который удобно выбрать дату,  время встречи и оплатить её</p>
                         <button class="button button--primary widget-btn">Подробнее</button>
                     </div>
                 </div>
 
                 <!-- Плашка 2: Психолог -->
                 <div class="sidebar-widget widget-profile">
-                    <div class="profile-header">
-                        <img src="img/side-2.png" alt="Лилия" class="profile-avatar">
-                        <div class="profile-info">
-                            <h4>Лилия</h4>
-                            <p>Психолог</p>
-                            <span>Опыт 6 лет · 43 года</span>
+
+                    <!-- Теги (абсолютное позиционирование) -->
+                    <div class="profile-badges">
+                        <div class="profile-badge">
+                            <span class="badge-icon">📝</span> Переписка
+                        </div>
+                        <div class="profile-badge">
+                            <span class="badge-icon">📹</span> Видео
                         </div>
                     </div>
-                    <hr>
+
+                    <!-- Шапка профиля -->
+                    <div class="profile-header">
+                        <img src="img/side-2.png" alt="Лилия" class="profile-avatar">
+                        <h4 class="profile-name">Лилия</h4>
+                        <p class="profile-job">Психолог</p>
+                        <span class="profile-exp">Опыт 6 лет · 43 года</span>
+                    </div>
+
+                    <!-- Линия разделитель -->
+                    <hr class="profile-divider">
+
+                    <!-- Тело профиля -->
                     <div class="profile-body">
                         <h5>С чем работает психолог</h5>
-                        <ul>
+                        <ul class="profile-list">
                             <li>Тревога, тревожности</li>
                             <li>Подавленность</li>
                             <li>Тревога и панические атаки</li>
@@ -266,14 +293,22 @@
                     </div>
                 </div>
 
-                <!-- Виджет 4: Подарок (Зеленый) -->
-                <div class="sidebar-widget widget-promo">
-                    <div class="widget-content">
-                        <img src="img/side-3.png" alt="Подарок" class="promo-img">
-                        <h4>Дарите заботу</h4>
-                        <p>Сертификат на сессию с психологом</p>
-                        <button class="button button--primary widget-btn" style="background-color: #fff; color: #35B3A9;">Купить</button>
+               <!-- Виджет 4: Пакет сессий -->
+                <div class="sidebar-widget widget-pack">
+
+                    <!-- Текстовая часть -->
+                    <div class="pack-content">
+                        <h4><span class="pack-num">8</span> Видео сессий</h4>
+                        <p class="pack-desc">Проработать небольшие проблемы и продвинуться в решении сложных запросов</p>
+                        <div class="pack-price">18 500 ₽</div>
+                        <button class="button button--primary widget-btn">Купить</button>
                     </div>
+
+                    <!-- Картинки подарков (абсолютное позиционирование) -->
+                    <!-- Красный -->
+                    <img src="img/gift-red.png" alt="Gift" class="pack-gift pack-gift--red">
+                    <!-- Синий -->
+                    <img src="img/gift-blue.png" alt="Gift" class="pack-gift pack-gift--blue">
                 </div>
 
                 <img src="img/blob.svg" class="decorative-blob" alt="">
@@ -281,23 +316,36 @@
 
             </aside>
         </div>
+
+
     </div>
 
     <!-- НИЖНИЙ БЛОК (CTA) -->
+<!-- 2. ЛИНИЯ (В отдельном контейнере, чтобы была шириной 1200px) -->
+    <div class="container">
+        <hr class="article-bottom-line">
+    </div>
+
+<!-- 3. НИЖНЯЯ СЕКЦИЯ (Фон на всю ширину) -->
     <section class="bottom-cta-section">
+        <!-- Внутренний контейнер (чтобы контент был по центру) -->
         <div class="container bottom-cta-container">
+
             <div class="bottom-cta-text">
                 <h2>Откликается проблема?</h2>
-                <p>Поможем подобрать специалиста по работе с подобным запросом</p>
+                <p>Поможем подобрать специалиста <br> по работе с подобным запросом</p>
                 <button class="button button--primary button--large">Подобрать психолога</button>
             </div>
-            <div class="bottom-cta-img">
-                <img src="img/bottom-cta.png" alt="Пара">
-            </div>
-        </div>
 
+            <div class="bottom-cta-img-wrapper">
+                <img src="img/bottom-cta.png" alt="Пара" class="bottom-cta-img">
+            </div>
+
+        </div>
     </section>
-    </main>
+
+</div> <!-- Закрылся container -->
+</main>
     <!-- ПОДВАЛ (Footer) -->
     <footer class="footer">
     <div class="container footer__container">
@@ -348,7 +396,7 @@
             <!-- Колонка 4: Сколково и Соцсети -->
             <div class="footer__column footer__socials-block">
                 <div class="footer__sk-wrapper">
-                    <!-- Замени sk-logo.png на свою картинку из фигмы -->
+
                     <img src="img/sk-logo.png" alt="Сколково" class="footer__sk-logo">
                     <span class="footer__sk-text">Участник</span>
                 </div>
@@ -361,7 +409,7 @@
                 </div>
             </div>
 
-        </div> <!-- <-- ВОТ ЭТОТ DIV ЗАКРЫВАЕТ СЕТКУ -->
+        </div> <!-- <--  ЭТОТ DIV ЗАКРЫВАЕТ СЕТКУ -->
 
         <!-- ЛИНИЯ -->
         <hr class="footer__divider">
