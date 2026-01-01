@@ -1,192 +1,97 @@
-/* --- ПЕРЕМЕННЫЕ (Взять из Figma) --- */
+/* ============================= */
+/* GLOBAL.CSS — БАЗА, ХЕДЕР, ФУТЕР */
+/* ============================= */
+
+/* 1. ПЕРЕМЕННЫЕ И СБРОС */
 :root {
-    --text-color: #2D3440;       /* Темный цвет текста */
-    --accent-color: #7B61FF;     /* Фиолетовый (проверь в макете!) */
-    --bg-light: #F9F9F9;         /* Фон сайта или карточек */
-    --white: #FFFFFF;
-    --grey: #9497A5;             /* Цвет даты и авторов */
-    --container-width: 1140px;   /* Ширина контента на десктопе */
-    --font-family: 'Roboto', sans-serif;
+    --text-color: #2D3440;
+    --accent-color: #35B3A9;
+    --bg-light: #F9F9F9;
 }
 
-/* Сброс стилей */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: var(--font-family);
+    font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
-    background-color: var(--white);
     line-height: 1.5;
+    background-color: #fff;
+    /* Важно для кляксы */
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 ul { list-style: none; }
 
-/* Общие классы */
 .container {
-    max-width: 1200px; /* Увеличили ширину, чтобы влезало больше контента */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
 }
 
+/* 2. КНОПКИ (ОБЩИЕ) */
 .button {
-    background-color: var(--accent-color);
-    color: var(--white);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    padding: 12px 24px;
-    border-radius: 4px; /* Проверь радиус в фигме */
-    font-size: 16px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.3s;
 }
-.button:hover { opacity: 0.9; }
 
-/* --- HEADER --- */
+.button--primary {
+    background-color: #35B3A9;
+    color: #fff;
+}
+.button--primary:hover { background-color: #299D94; }
+
+.button--large {
+    padding: 15px 50px;
+    font-size: 16px;
+}
+
+/* 3. ХЕДЕР (HEADER) */
 .header {
-    padding: 24px 0; /* Чуть больше воздуха сверху и снизу */
+    padding: 24px 0;
     border-bottom: 1px solid #EAEAEA;
     background-color: #fff;
-    position: sticky; /* (Опционально) Фиксируем шапку при скролле */
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
 }
+.header__container { display: flex; align-items: center; justify-content: space-between; }
+.header__logo { margin-right: 40px; }
+.header__nav { margin-right: auto; }
+.header__list { display: flex; align-items: center; gap: 24px; }
+.header__link { font-size: 16px; font-weight: 500; color: #2D3440; display: flex; align-items: center;}
+.header__link:hover { color: #35B3A9; }
+.header__link--arrow::after { content: ''; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #2D3440; margin-left: 6px; margin-top: 2px; }
+.header__link--arrow:hover::after { border-top-color: #35B3A9; }
 
-.header__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Логотип */
-.header__logo {
-    display: flex; /* Убирает лишние отступы под картинкой */
-    margin-right: 40px; /* Отступ от лого до меню */
-}
-
-/* Меню */
-.header__nav {
-    margin-right: auto; /* Сдвигает меню влево к логотипу */
-}
-
-.header__list {
-    display: flex;
-    align-items: center;
-    gap: 24px; /* Расстояние между пунктами меню */
-}
-
-.header__link {
-    font-size: 16px;
-    color: #2D3440;
-    font-weight: 500; /* Чуть жирнее обычного */
-    text-decoration: none;
-    transition: color 0.3s;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.header__link:hover {
-    color: #35B3A9; /* Цвет при наведении */
-}
-
-/* Стрелочка для пункта "Материалы" (CSS треугольник) */
-.header__link--arrow::after {
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 5px solid #2D3440; /* Цвет стрелки */
-    margin-left: 6px;
-    margin-top: 2px;
-    transition: border-top-color 0.3s;
-}
-
-.header__link--arrow:hover::after {
-    border-top-color: #35B3A9; /* Цвет стрелки при наведении */
-}
-
-/* Кнопка "Подобрать психолога" */
-.button--primary {
-    background-color: #35B3A9; /* Основной бирюзовый цвет */
-    color: #fff;
-    font-weight: 700;
+/* Специфичная кнопка в хедере */
+.header__btn {
+    background-color: #E3F5F5 !important;
+    color: #35B3A9 !important;
     padding: 14px 28px;
     font-size: 16px;
-    border-radius: 4px;
-    transition: opacity 0.3s;
 }
+.header__btn:hover { background-color: #d2ebeb !important; }
 
-/* ВАЖНО: Если на скриншоте кнопка светлая с цветным текстом (альтернативный вариант) */
-/* Раскомментируй этот блок, если кнопка должна быть бледно-голубой, как на скрине */
-
-/* Основная зеленая кнопка */
-.button--primary {
-    background-color: #35B3A9; /* Тот самый цвет */
-    color: #ffffff;            /* Белый текст */
-    border: none;
-    border-radius: 4px;        /* Если нужно скругление 4px (или 8px как у карточек) */
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;          /* Жирный текст */
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-/* Эффект при наведении (становится чуть темнее) */
-.button--primary:hover {
-    background-color: #299D94;
-}
-
-.button--primary:hover {
-    opacity: 0.8;
-}
-
-/* АДАПТИВНОСТЬ (Исправление для мобильных) */
-@media (max-width: 991px) {
-    /* Скрываем кнопку на планшетах/мобильных, если она не влезает */
-    .header__btn {
-        display: none;
-    }
-
-    /* Меню прячем в бургер */
-    .header__nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background: #fff;
-        margin-right: 0;
-        display: flex;
-        justify-content: center;
-        padding-top: 80px;
-        transition: 0.4s;
-        z-index: 50;
-    }
-
-    .header__list {
-        flex-direction: column;
-        font-size: 20px;
-    }
-}
-/* Бургер скрыт на десктопе */
-.burger-checkbox, .burger-btn { display: none; }
-
-/* --- БЛОГ: ЗАГОЛОВОК И ФИЛЬТРЫ (START) --- */
-
-.blog-hero {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: #fff; /* Фон белый */
-}
-
-/* 1. Хлебные крошки (Путь: Главная > Блог) */
+/* --- Breadcrumbs (GLOBAL) --- */
 .breadcrumbs {
-    display: flex;
-    align-items: center;
-    list-style: none;
+    display: flex;          /* Выстраивает в ряд */
+    align-items: center;    /* Центрирует по вертикали */
+    list-style: none;       /* Убирает точки списка */
     padding: 0;
+
+    /* Отступы */
+    margin-top: 20px;
     margin-bottom: 20px;
 
     font-family: 'Montserrat', sans-serif;
@@ -206,7 +111,7 @@ ul { list-style: none; }
     margin: 0 10px;
     color: #ccc;
     line-height: 1;
-    padding-bottom: 2px; /* Небольшая коррекция высоты стрелки */
+    padding-bottom: 2px;
 }
 
 .breadcrumbs a {
@@ -216,1093 +121,65 @@ ul { list-style: none; }
 }
 
 .breadcrumbs a:hover {
-    color: #35B3A9; /* Цвет при наведении */
-}
-
-/* 2. Заголовок "Блог" */
-.blog-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: #2D3440;
-    line-height: 1.2;
-}
-
-/* 3. Контейнер для кнопок-фильтров */
-/* --- ЛЕНТА ФИЛЬТРОВ (ОБНОВЛЕННАЯ) --- */
-
-.blog-filters {
-    display: flex;
-    flex-wrap: nowrap;       /* ЗАПРЕЩАЕМ перенос на новую строку */
-    overflow-x: auto;        /* Разрешаем горизонтальную прокрутку */
-    gap: 12px;               /* Отступы между кнопками */
-    padding-bottom: 10px;    /* Место, чтобы скроллбар не прилипал к кнопкам */
-
-    /* Скрываем полосу прокрутки для красоты (работает в Chrome/Safari/Opera) */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-/* Скрываем полосу прокрутки (продолжение) */
-.blog-filters::-webkit-scrollbar {
-    display: none;
-}
-
-.filter-btn {
-    background-color: #fff;
-    border: 1px solid #EAEAEA;
-
-    /* Уменьшаем боковые отступы, чтобы кнопки стали компактнее */
-    padding: 10px 14px;
-
-    border-radius: 40px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: #2D3440;
-    cursor: pointer;
-    transition: all 0.3s;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-/* При наведении */
-.filter-btn:hover {
-    border-color: #16C8BB;
-    color: #2D3440; /* Текст остается темным */
-}
-
-/* АКТИВНАЯ КНОПКА (ТЕПЕРЬ ТОЛЬКО ОБВОДКА) */
-.filter-btn--active {
-    background-color: #fff;    /* Фон остается белым */
-    border-color: #16C8BB;     /* Цвет рамки (бирюзовый) */
-    color: #2D3440;            /* Текст темный */
-
-    /* Если нужно сделать текст чуть жирнее у активной */
-    /* font-weight: 700; */
-}
-/* --- СЕТКА СТАТЕЙ И КАРТОЧКИ (START) --- */
-
-/* 1. Фон блока и отступы */
-.blog-posts {
-    /* Градиент: Сверху голубой (#EFF5FB), в самом низу переходит в белый (#FFF) */
-    background: linear-gradient(to bottom, #EFF5FB 0%, #EFF5FB 15%, #ffffff 100%);
-
-    padding-top: 60px;
-    padding-bottom: 80px;
-}
-
-/* 2. Сама сетка (Grid) */
-.posts-grid {
-    display: grid;
-    /* Магия: делаем 6 колонок, чтобы удобно делить (50% и 33%) */
-    grid-template-columns: repeat(6, 1fr);
-    gap: 24px; /* Расстояние между карточками */
-    margin-bottom: 60px;
-}
-
-/* 3. Стиль карточки (Окошко) */
-.card {
-    background-color: #fff;
-    border-radius: 16px;    /* Скругление 16px */
-    overflow: hidden;       /* Обрезаем всё, что торчит */
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
-    /* Обычная (маленькая) карточка занимает 2 колонки из 6 (1/3) */
-    grid-column: span 2;
-}
-
-/* Большая карточка занимает 3 колонки из 6 (1/2) */
-.card--large {
-    grid-column: span 3;
-}
-
-/* 4. Картинка и Бейджи */
-.card__img-wrapper {
-    position: relative; /* Важно! Чтобы бейджики позиционировались внутри */
-    width: 100%;
-    height: 250px;
-}
-
-.card--large .card__img-wrapper {
-    height: 320px; /* У больших карточек картинка выше */
-}
-
-.card__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Картинка заполняет блок красиво */
-    display: block;
-}
-
-/* Контейнер для бейджей (поверх картинки) */
-.card__badges {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 2;
-}
-
-/* Сами плашки (Self, Самооценка...) */
-/* --- СТИЛЬ БЕЙДЖА (ПО ДАННЫМ ИЗ FIGMA) --- */
-.card__badge {
-    background-color: #fff;
-
-    /* Размеры из макета */
-    border-radius: 24px;       /* Radius: 24px */
-    padding: 6px 8px;          /* Top/Bottom: 6px, Left/Right: 8px */
-
-    /* Настройка содержимого */
-    display: inline-flex;      /* Чтобы gap работал и размер был по контенту */
-    align-items: center;       /* Центровка иконки и текста по вертикали */
-    gap: 4px;                  /* Gap: 4px */
-
-    font-size: 14px;
-    font-weight: 600;
-    color: #2D3440;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    opacity: 0.7;
-    /* Чтобы бейдж не растягивался на всю ширину */
-    align-self: flex-start;
-}
-
-/* 5. Текстовая часть карточки */
-.card__content {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.card__title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 12px;
-}
-
-.card__title a {
-    text-decoration: none;
-    color: #2D3440;
-    transition: color 0.3s;
-}
-
-.card__title a:hover {
     color: #35B3A9;
 }
 
-.card--large .card__title {
-    font-size: 24px; /* Заголовок крупнее у больших */
-}
+/* Бургер (Скрыт на десктопе) */
+.burger-checkbox, .burger-btn { display: none; }
 
-.card__author {
-    font-size: 14px;
-    color: #494949;
-    margin-bottom: 8px;
-}
-
-.card__desc {
-    font-size: 14px;
-    color: #8F8F8F;
-    line-height: 1.5;
-    margin-bottom: 20px;
-
-    /* Обрезаем текст троеточием, если длинный */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.card__date {
-    margin-top: auto;
-    font-size: 12px;
-    color: #999;
-}
-
-/* 6. Кнопка "Ещё" */
-.blog-btn-wrapper {
-    display: flex;
-    justify-content: center;
-}
-
-.button--large {
-    padding: 15px 50px;
-    font-size: 16px;
-    border-radius: 8px;
-}
-
-/* --- АДАПТИВНОСТЬ СЕТКИ --- */
-
-/* Планшет */
-@media (max-width: 1024px) {
-    .posts-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
-    }
-    /* Сбрасываем разницу между большими и маленькими */
-    .card, .card--large {
-        grid-column: span 1;
-    }
-    .card--large .card__img-wrapper {
-        height: 250px;
-    }
-    .card--large .card__title {
-        font-size: 18px;
-    }
-}
-
-/* Мобильный */
-@media (max-width: 600px) {
-    .posts-grid {
-        grid-template-columns: 1fr; /* 1 колонка */
-    }
-}
-/* --- СЕТКА СТАТЕЙ И КАРТОЧКИ (END) --- */
-
-/* --- FOOTER --- */
-/* --- FOOTER --- */
-/* --- FOOTER FINAL (MONTSERRAT UPDATE) --- */
+/* 4. ФУТЕР (FOOTER) */
 .footer {
     background-color: #2E5B8E;
     color: #ffffff;
-    /* Важно: ставим шрифт Montserrat для всего футера */
     font-family: 'Montserrat', sans-serif;
     padding: 60px 0 30px 0;
     margin-top: auto;
 }
+.footer__content { display: grid; grid-template-columns: max-content max-content 1fr auto; gap: 40px; margin-bottom: 40px; }
+.footer__list { min-width: 120px; }
+.footer__list li { margin-bottom: 12px; }
+.footer__link { opacity: 1; font-size: 16px; font-weight: 700; color: #fff; }
+.footer__link:hover { text-decoration: underline; opacity: 0.8; }
 
-/* Сетка верхней части */
-.footer__content {
-    display: grid;
-    /*
-       1 и 2 колонка: max-content (ширина по тексту, чтобы было компактно как на скрине)
-       3 колонка: 1fr (растягивается, занимая всё место)
-       4 колонка: auto (под размер контента)
-    */
-    grid-template-columns: max-content max-content 1fr auto;
-    gap: 40px; /* Расстояние между блоками */
-    margin-bottom: 40px;
-}
+.footer__subscribe { max-width: 480px; }
+.footer__subscribe-title { font-weight: 700; margin-bottom: 20px; font-size: 16px; }
+.footer__form { display: flex; margin-bottom: 15px; }
+.footer__input { flex-grow: 1; padding: 8px 12px; border: none; border-radius: 4px 0 0 4px; outline: none; font-family: 'Montserrat', sans-serif; font-size: 14px; }
+.footer__btn { background-color: #35B3A9; color: white; border: none; padding: 0 15px; border-radius: 0 4px 4px 0; cursor: pointer; }
+.footer__disclaimer { font-size: 12px; opacity: 0.6; line-height: 1.4; max-width: 400px; }
 
-/* ССЫЛКИ И МЕНЮ */
-.footer__list {
-    list-style: none;
-    padding: 0;
-    /* Ограничиваем ширину колонок меню, чтобы они не разъезжались,
-       если там будет длинное слово, но max-content обычно справляется */
-    min-width: 120px;
-}
+.footer__socials-block { display: flex; flex-direction: column; align-items: flex-start; }
+.footer__sk-wrapper { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+.footer__sk-logo { max-height: 40px; }
+.footer__sk-text { font-weight: 700; opacity: 0.8; }
+.footer__socials-icons { display: flex; gap: 15px; }
 
-.footer__list li {
-    margin-bottom: 12px;
-}
+.footer__divider { border: none; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 30px; }
+.footer__bottom { display: flex; align-items: center; gap: 40px; font-size: 14px; opacity: 0.8; }
+.footer__copyright { min-width: 120px; }
+.footer__legal { white-space: nowrap; }
 
-.footer__link {
-    opacity: 1; /* Убираем прозрачность, чтобы были ярче */
-    font-size: 16px;
-    font-weight: 700; /* Жирный шрифт как на макете */
-    color: #fff;
-}
+/* 5. МОБИЛЬНЫЙ АДАПТИВ (ОБЩИЙ) */
+@media (max-width: 991px) {
+    .header__btn { display: none; }
+    .burger-btn { display: block; width: 30px; height: 20px; position: relative; cursor: pointer; z-index: 200; }
+    .burger-btn span, .burger-btn span::before, .burger-btn span::after { position: absolute; width: 100%; height: 2px; background: #2D3440; transition: 0.3s; }
+    .burger-btn span { top: 9px; } .burger-btn span::before { content:''; top: -9px; } .burger-btn span::after { content:''; top: 9px; }
 
-.footer__link:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-}
-
-/* ПОДПИСКА (3-я колонка) */
-.footer__subscribe {
-    max-width: 480px; /* Ограничиваем ширину как на фиолетовом скрине (там 486px) */
-}
-
-.footer__subscribe-title {
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-size: 16px;
-    line-height: 1.4;
-}
-
-.footer__form {
-    display: flex;
-    margin-bottom: 15px;
-}
-
-.footer__input {
-    flex-grow: 1;
-    /* Уменьшил паддинги (было 12px, стало 8px 12px), чтобы полоска была тоньше */
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px 0 0 4px;
-    outline: none;
-    font-family: 'Montserrat', sans-serif; /* Чтобы placeholder был правильным шрифтом */
-    font-size: 14px;
-}
-
-.footer__btn {
-    background-color: #35B3A9;
-    color: white;
-    border: none;
-    /* Кнопка тоже чуть компактнее */
-    padding: 0 15px;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer__btn:hover {
-    background-color: #298e86;
-}
-
-.footer__disclaimer {
-    font-size: 12px; /* Мелкий текст */
-    opacity: 0.6;
-    line-height: 1.4;
-    max-width: 400px; /* Чтобы текст переносился как в макете */
-}
-
-/* ПРАВАЯ КОЛОНКА (Сколково + Соцсети) */
-.footer__socials-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Прижато влево внутри своей колонки */
-}
-
-.footer__sk-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.footer__sk-logo {
-    max-height: 40px;
-    /* Если логотип черный PNG, используй filter, чтобы сделать белым: */
-    /* filter: brightness(0) invert(1); */
-}
-
-.footer__sk-text {
-    font-weight: 700;
-    opacity: 0.8;
-}
-
-.footer__socials-icons {
-    display: flex;
-    gap: 15px;
-}
-
-/* НИЖНЯЯ ЛИНИЯ */
-.footer__divider {
-    border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 30px;
-}
-
-.footer__bottom {
-    display: flex;
-    align-items: center;
-    /* Расстояние между элементами внизу фиксированное */
-    gap: 40px;
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-/* Настройки конкретных элементов низа */
-.footer__copyright {
-    /* Можно задать мин. ширину, если нужно выровнять идеально под меню */
-    min-width: 120px;
-}
-
-.footer__legal {
-    white-space: nowrap; /* ЗАПРЕЩАЕМ перенос строки для документов */
-}
-
-/* АДАПТИВНОСТЬ */
-@media (max-width: 992px) {
-    .footer__content {
-        grid-template-columns: 1fr 1fr; /* 2 колонки на планшете */
-    }
-    .footer__bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    .footer__content {
-        grid-template-columns: 1fr; /* 1 колонка на телефоне */
-    }
-}
-/* --- АДАПТИВНОСТЬ (Media Queries) --- */
-
-/* Планшет (меньше 1024px) */
-@media (max-width: 1024px) {
-    .posts__grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
-    }
-    .footer__container {
-        grid-template-columns: 1fr 1fr; /* Подвал в 2 колонки */
-    }
-}
-
-/* Мобильный (меньше 768px) */
-@media (max-width: 768px) {
-    /* Меняем меню на мобильное */
-    .header__button { display: none; } /* Скрываем кнопку "Связаться" */
-
-    .burger-btn {
-        display: block;
-        width: 30px; height: 20px;
-        position: relative;
-        cursor: pointer;
-        z-index: 5;
-    }
-    .burger-btn span, .burger-btn span::before, .burger-btn span::after {
-        position: absolute; width: 100%; height: 2px; background: #000;
-        transition: 0.3s;
-    }
-    .burger-btn span { top: 9px; }
-    .burger-btn span::before { content:''; top: -9px; }
-    .burger-btn span::after { content:''; top: 9px; }
-
-    /* Выезжающее меню */
     .header__nav {
-        position: fixed; top: 0; right: -100%;
-        width: 100%; height: 100vh;
-        background: var(--white);
-        flex-direction: column; justify-content: center;
-        transition: 0.3s;
-        z-index: 4;
-        padding-top: 60px;
+        position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+        background: #fff; display: flex; justify-content: center; padding-top: 80px;
+        transition: 0.4s; z-index: 150;
     }
-    .header__list { flex-direction: column; align-items: center; font-size: 24px; }
-
-    /* Логика открытия */
+    .header__list { flex-direction: column; font-size: 20px; }
     .burger-checkbox:checked ~ .header__nav { right: 0; }
-
-    /* Крестик */
     .burger-checkbox:checked ~ .burger-btn span { background: transparent; }
     .burger-checkbox:checked ~ .burger-btn span::before { transform: rotate(45deg); top: 0; }
     .burger-checkbox:checked ~ .burger-btn span::after { transform: rotate(-45deg); top: 0; }
 
-    /* Сетка в 1 колонку */
-    .posts__grid { grid-template-columns: 1fr; }
-    .footer__container { grid-template-columns: 1fr; }
-}
-.article-layout {
-    display: flex;
-    gap: 40px;
-    padding-top: 40px;
-    padding-bottom: 80px;
-}
-
-.post-content {
-    flex: 2; /* Занимает 2/3 места */
-}
-
-.sidebar {
-    flex: 1; /* Занимает 1/3 места */
-}
-
-/* Стили для текста статьи, чтобы он был красивым */
-/* --- СТИЛИ ДЛЯ СТРАНИЦЫ СТАТЬИ --- */
-
-.article-page {
-    padding-top: 40px;
-    padding-bottom: 80px;
-}
-
-.article-layout {
-    display: flex;
-    gap: 60px; /* Отступ между статьей и сайдбаром */
-}
-
-/* Левая часть: Контент */
-.post-content {
-    flex: 2; /* Занимает больше места */
-}
-
-.post-content__title {
-    font-size: 32px;
-    margin-bottom: 15px;
-    line-height: 1.2;
-}
-
-.post-content__meta {
-    color: #9497A5;
-    font-size: 14px;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-}
-
-.post-content__img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 40px;
-}
-
-/* Оформление текста внутри статьи */
-.post-content__text p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: #2D3440;
-}
-
-.post-content__text h2 {
-    font-size: 24px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-
-.post-content__text ul {
-    margin-bottom: 20px;
-    padding-left: 20px;
-}
-
-.post-content__text ul li {
-    list-style: disc; /* Маркеры списка */
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-/* Правая часть: Сайдбар */
-.sidebar {
-    flex: 1; /* Занимает меньше места */
-    max-width: 350px;
-}
-
-.sidebar__block {
-    margin-bottom: 40px;
-}
-
-.sidebar__title {
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #2D3440;
-}
-
-/* Карточка автора */
-.author-card {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: #F9F9F9;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-.author-card__img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.author-card__name {
-    font-weight: bold;
-    font-size: 16px;
-    margin: 0;
-}
-
-.author-card__role {
-    color: #9497A5;
-}
-
-/* Список популярных статей */
-.popular-list__item {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.popular-list__item:last-child {
-    border-bottom: none;
-}
-
-.popular-list__link {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.4;
-    display: block;
-}
-
-.popular-list__link:hover {
-    color: var(--accent-color, #7B61FF); /* Цвет при наведении */
-}
-
-/* АДАПТИВНОСТЬ для Статьи */
-@media (max-width: 900px) {
-    .article-layout {
-        flex-direction: column; /* Блоки становятся друг под другом */
-    }
-
-    .sidebar {
-        max-width: 100%;
-        order: 2; /* Сайдбар уходит вниз под статью */
-        margin-top: 40px;
-    }
-}
-
-/* --- ИСПРАВЛЕНИЕ КНОПКИ В ШАПКЕ --- */
-
-/* Обращаемся к ней по уникальному классу header__btn */
-.header__btn {
-    background-color: #E3F5F5 !important; /* Светло-голубой фон */
-    color: #35B3A9 !important;            /* Текст цвета морской волны */
-}
-
-/* Эффект при наведении для шапки */
-.header__btn:hover {
-    background-color: #d2ebeb !important; /* Чуть темнее при наведении */
-    opacity: 1;
-}
-
-/* --- СТИЛИ СТАТЬИ --- */
-
-/* 1. Заголовок и Фото */
-.article-header {
-    margin-bottom: 40px;
-}
-.article-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
-.article-meta {
-    font-size: 14px;
-    color: #999;
-    margin-bottom: 30px;
-}
-.article-hero-img {
-    width: 100%;
-    border-radius: 16px;
-    margin-bottom: 40px;
-}
-
-/* 2. Сетка: Контент + Сайдбар */
-.article-layout {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start; /* Чтобы сайдбар не растягивался на всю высоту */
-}
-
-.article-content {
-    position: relative;
-    z-index: 50;
-}
-
-/* 2. Настраиваем Сайдбар, чтобы клякса жила внутри него */
-.sidebar {
-    position: relative; /* Чтобы абсолютная клякса позиционировалась от сайдбара */
-
-}
-
-/* --- ОФОРМЛЕНИЕ ТЕКСТА СТАТЬИ --- */
-.table-of-contents {
-    margin-bottom: 40px;
-}
-.table-of-contents h4 { margin-bottom: 15px; }
-.table-of-contents ul { padding-left: 20px; }
-.table-of-contents li { list-style: disc; margin-bottom: 10px; color: #35B3A9; }
-.table-of-contents a { text-decoration: underline; color: #2D3440; }
-
-.article-content h3 { font-size: 24px; margin-top: 40px; margin-bottom: 20px; }
-.article-content p { font-size: 16px; line-height: 1.6; margin-bottom: 20px; color: #2D3440; }
-
-/* Цитата */
-.article-quote {
-    background-color: #F3F4F6;
-    padding: 30px;
-    border-radius: 16px;
-    margin: 40px 0;
-    position: relative;
-    font-style: italic;
-}
-.article-quote cite {
-    display: block;
-    margin-top: 15px;
-    font-weight: 700;
-    font-style: normal;
-}
-
-/* Разделитель */
-.article-divider {
-    text-align: center;
-    margin: 40px 0;
-}
-
-/* Упражнение */
-.exercise-box {
-    background-color: #E6F5F5; /* Светло-бирюзовый */
-    padding: 30px;
-    border-radius: 16px;
-    margin: 40px 0;
-}
-
-.exercise-box--pink {
-    background-color: #FFF3EB; /* Светло-персиковый цвет */
-    padding: 30px;
-    border-radius: 16px;
-    margin: 40px 0;
-}
-
-.exercise-box--pink h4 {
-    margin-bottom: 15px;
-    font-weight: 700;
-    font-size: 18px;
-    color: #2D3440;
-}
-
-.exercise-box--pink p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0;
-    color: #2D3440;
-}
-.exercise-box h4 { margin-bottom: 15px; font-weight: 700; }
-
-/* Теги статьи */
-.article-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 60px;
-    margin-bottom: 40px;
-}
-.article-tag {
-    font-size: 14px;
-    color: #999;
-    text-decoration: none;
-}
-.article-tag:not(:last-child)::after {
-    content: '·';
-    margin-left: 10px;
-    color: #ccc;
-}
-
-/* --- ВИДЖЕТЫ САЙДБАРА --- */
-.sidebar-widget {
-    border-radius: 16px;
-    overflow: hidden;
-    /* Тень и фон, если нужно */
-}
-
-/* Виджет 1: Окошки (Голубой) */
-.widget-blue {
-    background-color: #E6F0FD; /* Светло-голубой */
-    text-align: center;
-    padding-bottom: 20px;
-}
-.widget-content { padding: 20px; }
-.widget-btn { width: 100%; margin-top: 15px; }
-
-/* Виджет 2: Профиль (Белый с рамкой) */
-.widget-profile {
-    border: 1px solid #EAEAEA;
-    background: #fff;
-    padding: 20px;
-}
-.profile-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 15px;
-}
-.profile-avatar { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; object-fit: cover;}
-.profile-body ul { list-style: disc; padding-left: 20px; margin-bottom: 20px; font-size: 14px; }
-.profile-body li { margin-bottom: 5px; }
-
-/* Виджет 3: Подарок (Темно-синий) */
-.widget-gift {
-    background-color: #3A68B8;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    min-height: 200px; /* Высота по макету */
-}
-.gift-img { margin-top: 20px; }
-
-/* --- НИЖНИЙ БЛОК (CTA) --- */
-.bottom-cta-section {
-    /* Градиент внизу страницы, как просили */
-    background: linear-gradient(to bottom, #fff 0%, #EFF5FB 100%);
-    padding: 80px 0 0 0;
-    margin-top: 60px;
-}
-
-.bottom-cta-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.bottom-cta-text {
-    max-width: 500px;
-    padding-bottom: 80px;
-}
-.bottom-cta-text h2 {
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-.bottom-cta-text p {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 30px;
-}
-
-/* Картинка снизу справа */
-.bottom-cta-img img {
-    display: block;
-    max-height: 350px;
-}
-
-/* АДАПТИВНОСТЬ СТАТЬИ */
-@media (max-width: 992px) {
-    .article-layout {
-        flex-direction: column; /* Сайдбар падает вниз */
-    }
-    .sidebar {
-        width: 100%; /* На мобильном сайдбар во всю ширину */
-        align-items: center; /* Виджеты по центру */
-    }
-    .sidebar-widget {
-        width: 100%;
-        max-width: 350px; /* Ограничиваем ширину виджетов на планшете */
-    }
-
-    .bottom-cta-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .bottom-cta-text { padding-bottom: 40px; }
-}
-
-/* --- СПИСОК С ЦВЕТНЫМИ ТОЧКАМИ --- */
-.custom-list {
-    list-style: none; /* Убираем стандартные черные точки */
-    padding: 0;
-    margin-bottom: 30px;
-}
-
-.custom-list li {
-    position: relative;
-    padding-left: 20px; /* Отступ для нашей точки */
-    margin-bottom: 15px;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #2D3440;
-}
-
-/* Рисуем свою точку */
-.custom-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 10px; /* Подгоняем по высоте строки */
-    width: 6px;
-    height: 6px;
-    background-color: #35B3A9; /* Твой фирменный бирюзовый цвет */
-    border-radius: 50%;
-}
-
-/* --- КАРТИНКА С ПОДПИСЬЮ --- */
-.article-figure {
-    margin: 40px 0;
-}
-
-.article-img {
-    width: 100%;
-    border-radius: 16px;
-    display: block;
-}
-
-.article-figure figcaption {
-    margin-top: 12px;
-    font-size: 14px;
-    color: #8F8F8F; /* Серый цвет подписи */
-    line-height: 1.4;
-}
-
-/* --- ЦИТАТА С РОЗОВЫМ ПЯТНОМ --- */
-.blob-quote {
-    position: relative;
-    margin: 60px 0;
-    padding: 40px 20px;
-    text-align: center;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 1;
-}
-
-.blob-quote p {
-    position: relative;
-    z-index: 2;
-    font-style: italic;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #2D3440;
-    margin: 0;
-}
-
-/* Рисуем пятно на фоне через псевдоэлемент */
-.blob-quote::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 240px; /* Размер пятна */
-    height: 168px;
-    background-color: #FEEBEF; /* Нежно-розовый цвет */
-    /* Магия скругления для создания формы "кляксы" */
-    border-radius: 43% 57% 70% 30% / 30% 62% 38% 70%;
-    z-index: -1; /* Кладем под текст */
-}
-
-/* Настраиваем размеры картинок в статье по макету */
-.article-hero-img,
-.article-img {
-    width: 100%;          /* На мобильном займет всю ширину */
-    max-width: 690px;     /* На десктопе не больше 690px */
-    height: 331px;        /* Фиксированная высота */
-    object-fit: cover;    /* Важно: обрезает лишнее, сохраняя пропорции, чтобы фото не сплющилось */
-    border-radius: 16px;  /* Скругление углов */
-    display: block;
-}
-
-/* --- БЛОК С КАРТИНКОЙ И ТЕКСТОМ РЯДОМ --- */
-.article-split-block {
-    display: flex;
-    gap: 30px;        /* Расстояние между картинкой и текстом */
-    margin: 40px 0;
-    align-items: flex-start;
-}
-
-/* Настройки картинки (Женщина в шляпе) */
-.article-split-img {
-    width: 282px;         /* Точно по макету */
-    height: 380px;        /* Точно по макету */
-    object-fit: cover;    /* Чтобы фото не сплющилось */
-    border-radius: 16px;  /* Скругление */
-    flex-shrink: 0;       /* Запрещаем картинке сжиматься */
-    display: block;
-}
-
-/* Настройки текста справа */
-.article-split-text p {
-    margin-top: 0;        /* Убираем отступ у первого абзаца, чтобы был ровно с картинкой */
-    margin-bottom: 20px;
-}
-
-/* --- ЖЕЛТАЯ ПЛАШКА (УПРАЖНЕНИЕ) --- */
-.exercise-box--yellow {
-    background-color: #FEFAEC; /* Бежевый фон */
-    padding: 30px;
-    border-radius: 16px;
-    margin: 40px 0;
-}
-
-.exercise-box--yellow h4 {
-    margin-bottom: 15px;
-    font-weight: 700;
-    font-size: 18px;
-    color: #2D3440;
-}
-
-.exercise-box--yellow p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0;
-    color: #2D3440;
-}
-
-/* --- АДАПТИВНОСТЬ ЭТОГО БЛОКА --- */
-/* На планшетах и телефонах ставим картинку сверху */
-@media (max-width: 768px) {
-    .article-split-block {
-        flex-direction: column;
-    }
-
-    .article-split-img {
-        width: 100%;       /* На мобильном картинка во всю ширину */
-        height: auto;      /* Высота авто */
-        max-height: 380px; /* Но не выше оригинала */
-    }
-}
-
-/* --- ИСПРАВЛЕНИЯ ДЛЯ СТАТЬИ --- */
-
-/* 1. Чтобы клякса не растягивала страницу вширь */
-body {
-    overflow-x: hidden;
-    position: relative; /* Чтобы клякса позиционировалась относительно страницы */
-}
-
-/* 2. Отступ текста под женщиной */
-.text-indent {
-    margin-top: 40px !important; /* Принудительный отступ сверху */
-}
-
-/* 3. Клякса (Salmon Blob) */
-/* Клякса (Розовый шар) */
-body {
-    position: relative; /* Важно: чтобы координаты кляксы считались от страницы */
-    overflow-x: hidden; /* Чтобы клякса не создавала горизонтальную прокрутку */
-}
-
-.decorative-blob {
-    position: absolute;
-    z-index: -1; /* Уводим на задний план */
-
-    /* Размеры (как ты скидывала) */
-    width: 686px;
-    height: 606px;
-
-    /* КООРДИНАТЫ (Подгоняем относительно сайдбара) */
-    /* Сдвигаем влево, чтобы она залезла под текст */
-    left: 550px;
-
-    /* Сдвигаем вниз, чтобы встала напротив блока с женщиной */
-    /* Поиграй с этим числом, если нужно выше/ниже */
-    top: 1650px;
-
-    /* Если SVG уже повернута, transform не нужен. Если нет - раскомментируй */
-    /* transform: rotate(180deg); */
-
-    pointer-events: none; /* Чтобы сквозь неё можно было кликать */
-}
-
-/* Добавляем отступ для текста, который идет сразу после блока "Картинка + Текст" */
-.article-split-block + p {
-    margin-top: 60px; /* Отталкиваем текст вниз */
-}
-
-/* Модификатор для маленькой картинки (Руки) */
-.article-split-img--small {
-    width: 281px;  /* Чуть меньше по ширине */
-    height: 174px; /* Сильно меньше по высоте */
-}
-
-/* На мобильных устройствах сбрасываем высоту, чтобы было красиво */
-@media (max-width: 768px) {
-    .article-split-img--small {
-        width: 100%;
-        height: auto;
-    }
+    .footer__content { grid-template-columns: 1fr 1fr; }
+    .footer__bottom { flex-direction: column; align-items: flex-start; gap: 15px; }
+}
+@media (max-width: 576px) {
+    .footer__content { grid-template-columns: 1fr; }
 }
